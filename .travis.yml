@@ -1,3 +1,5 @@
+language: node
+
 sudo: false
 
 os:
