@@ -1,0 +1,4 @@
+suites:
+    lrc_suite:
+        namespace: MerlinDiavova\DevEnv\Phpspec
+        psr4_prefix: MerlinDiavova\DevEnv\Phpspec

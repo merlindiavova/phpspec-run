@@ -1,0 +1,10 @@
+{
+    "phpspec-run.commandSuffix": null,
+    "phpspec-run.phpspecBinary": null,
+    "phpspec-run.ssh.enable": false,
+    "phpspec-run.ssh.user": "auser",
+    "phpspec-run.ssh.host": "ahost",
+    "phpspec-run.ssh.port": "2222",
+    "phpspec-run.ssh.paths": {},
+    "phpspec-run.ssh.binary": null
+}

@@ -1,0 +1,185 @@
+{
+    "name": "phpspec-run",
+    "displayName": "phpspec run",
+    "description": "Run phpspec",
+    "version": "0.0.1",
+    "publisher": "merlindiavova",
+    "engines": {
+        "vscode": "^1.26.0"
+    },
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/merlindiavova/phpspec-run.git"
+	},
+	"icon": "icon.png",
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:phpspec-run.here",
+        "onCommand:phpspec-run.spec",
+        "onCommand:phpspec-run.suite",
+        "onCommand:phpspec-run.directory",
+        "onCommand:phpspec-run.previous"
+    ],
+    "main": "./src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "phpspec-run.here",
+                "title": "phpspec-run: the given spec closest to the cursor position"
+            },
+            {
+                "command": "phpspec-run.spec",
+                "title": "phpspec-run: only the given spec"
+            },
+            {
+                "command": "phpspec-run.suite",
+                "title": "phpspec-run: all the specs in the spec directory."
+            },
+            {
+                "command": "phpspec-run.directory",
+                "title": "phpspec-run: any specs found in given directory and its subdirectories"
+            },
+            {
+                "command": "phpspec-run.previous",
+                "title": "phpspec-run: run previous phpspec command"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "ctrl+alt+p",
+                "command": "phpspec-run.here"
+            },
+            {
+                "key": "ctrl+alt+o",
+                "command": "phpspec-run.spec"
+            },
+            {
+                "key": "ctrl+alt+l",
+                "command": "phpspec-run.suite"
+            },
+            {
+                "key": "ctrl+alt+k",
+                "command": "phpspec-run.directory"
+            },
+            {
+                "key": "ctrl+alt+0",
+                "command": "phpspec-run.previous"
+            }
+        ],
+        "configuration": {
+            "title": "phpspec run configuration",
+            "properties": {
+                "phpspec-run.commandSuffix": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "This string will be appended to the phpspec command, it's a great place to add flags like '--stop-on-failure'"
+                },
+                "phpspec-run.phpspecBinary": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "A custom phpspec binary. Ex: 'phpspec', '/usr/local/bin/phpspec'"
+                },
+                "phpspec-run.ssh.enable": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run tests over SSH"
+                },
+                "phpspec-run.ssh.user": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "The user to connect as when running test via SSH"
+                },
+                "phpspec-run.ssh.host": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "The hostname to use when running tests via SSH"
+                },
+                "phpspec-run.ssh.paths": {
+                    "type": "object",
+                    "default": {},
+                    "description": "The SSH path map. Keys are local (host) paths and values are remote (guest) paths."
+                },
+                "phpspec-run.ssh.binary": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "The path (and flags) to an SSH-compatible binary. If null it will use SSH on *nix and Putty on Windows."
+                },
+                "phpspec-run.ssh.options": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "Additional command line options to pass to ssh/putty/plink"
+                }
+            }
+        },
+        "problemMatchers": [
+            {
+                "name": "phpspec",
+                "owner": "php",
+                "fileLocation": "absolute",
+                "pattern": [
+                    {
+                        "regexp": "^\\d+\\s.*$"
+                    },
+                    {
+                        "regexp": "^(.*)$",
+                        "message": 1
+                    },
+                    {
+                        "regexp": "^(.*):(\\d+)$",
+                        "file": 1,
+                        "location": 2
+                    }
+                ]
+            }
+        ],
+        "taskDefinitions": [
+            {
+                "type": "phpspec",
+                "required": [
+                    "task"
+                ],
+                "properties": {
+                    "task": {
+                        "type": "string",
+                        "description": "The task to execute"
+                    }
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "eslint": "^4.11.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "find-up": "^3.0.0",
+        "mocha": "^5.2.0"
+    }
+}
