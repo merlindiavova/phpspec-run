@@ -169,7 +169,8 @@
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+        "test": "node ./node_modules/vscode/bin/test",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
     },
     "devDependencies": {
         "typescript": "^2.6.1",
